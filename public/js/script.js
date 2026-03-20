@@ -1,19 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("JS RUNNING ");
+  console.log("JS RUNNING");
 
-  const form = document.querySelector("form");
+  const forms = document.querySelectorAll(".needs-validation");
 
-  form.addEventListener("submit", function (event) {
-    console.log("SUBMIT CLICKED");
+  Array.from(forms).forEach((form) => {
+    form.addEventListener("submit", function (event) {
+      console.log("SUBMIT CLICKED");
 
-    if (!form.checkValidity()) {
-      console.log("INVALID ");
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      console.log("VALID");
-    }
+      if (!form.checkValidity()) {
+        console.log("INVALID");
+        event.preventDefault();
+        event.stopPropagation();
+      } else {
+        console.log("VALID");
+      }
 
-    form.classList.add("was-validated");
+      form.classList.add("was-validated");
+    }, false);
   });
 });
