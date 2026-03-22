@@ -44,7 +44,7 @@ The project currently supports full **CRUD** operations for travel listings and 
 
 | Index Page | Show Page |
 |------------|-----------|
-| ![Index Page](https://via.placeholder.com) | ![Show Page](https://via.placeholder.com) |
+| ![Index Page](assets/index.png) | ![Show Page](assets/show.png) |
 
 ---
 
@@ -52,7 +52,7 @@ The project currently supports full **CRUD** operations for travel listings and 
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/techxkirti/Wanderlust.git
    cd wonderlust
 2. **Install Dependencies**
    ```bash
@@ -60,7 +60,7 @@ The project currently supports full **CRUD** operations for travel listings and 
    npm install
 3. **Database Configuration**
    - Ensure you have **MongoDB** installed and running locally.
-   - The app connects to: `mongodb://127.0.0.1:27017/wonderlust`
+   - The app connects to: `mongodb://127.0.0.1:27017/wanderlust`
    - (Optional) To seed the database with initial data:
    ```bash
    node init/index.js
