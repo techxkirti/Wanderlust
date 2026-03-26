@@ -2,12 +2,21 @@
 
 Wanderlust is a full-stack web application inspired by Airbnb. It allows users to list, explore, and review unique travel stays around the world. The project follows the **MVC (Model-View-Controller)** architecture for clean and scalable code.
 
-## 🚀 Current Status: Phase 1 & 2 Complete
-The project currently supports full **CRUD** operations for travel listings and a nested **Review System**.
+## 🚀 Current Status: Phase 3 in Progress (Auth & Sessions)
+The project has evolved from a basic CRUD app to a secure platform with **User Authentication**, **Authorization**, and **Session Management**.
 
 ---
 
 ## ✨ Features
+
+### 🔐 Authentication & Security
+- **User Accounts**: Full Sign-up, Login, and Logout functionality powered by **Passport.js**.
+- **Secure Passwords**: Industry-standard hashing and salting using **passport-local-mongoose**.
+- **Authorization**: Protected routes and ownership checks—only the creator of a listing or review can edit or delete it.
+- **Session Management**: Persistent logins using **express-session** so users stay authenticated while browsing.
+
+### ✉️ User Feedback (Flash Messages)
+- **Real-time Alerts**: Integrated **connect-flash** to provide instant feedback (e.g., "Welcome to Wanderlust!", "Listing Deleted!", "Invalid Username or Password").
 
 ### 🏠 Listings Management
 - **View All Listings**: A responsive home page showing all available stays using Bootstrap cards.
@@ -32,7 +41,8 @@ The project currently supports full **CRUD** operations for travel listings and 
 ## 🛠 Tech Stack
 
 - **Backend**: Node.js, Express.js
-- **Database**: MongoDB, Mongoose
+- **Authentication**: Passport.js, Passport-Local, Passport-Local-Mongoose
+- **Storage/Sessions**: MongoDB, Mongoose, Express-Session, Connect-Flash
 - **Frontend**: EJS (Embedded JavaScript), Bootstrap 5, FontAwesome
 - **Validation**: Joi (Javascript Object Schema Validation)
 - **Styling**: Custom CSS with "Plus Jakarta Sans" typography.
