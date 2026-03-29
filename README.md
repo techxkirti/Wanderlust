@@ -5,8 +5,6 @@ Wanderlust is a full-stack web application inspired by Airbnb. It allows users t
 ## 🚀 Current Status: Phase 3 in Progress (Auth & Sessions)
 The project has evolved from a basic CRUD app to a secure platform with **User Authentication**, **Authorization**, and **Session Management**.
 
----
-
 ## ✨ Features
 
 ### 🔐 Authentication & Security
