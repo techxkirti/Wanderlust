@@ -2,37 +2,30 @@
 
 Wanderlust is a full-stack web application inspired by Airbnb. It allows users to list, explore, and review unique travel stays around the world. The project follows the **MVC (Model-View-Controller)** architecture for clean and scalable code.
 
-## 🚀 Current Status: Phase 3 in Progress (Auth & Sessions)
-The project has evolved from a basic CRUD app to a secure platform with **User Authentication**, **Authorization**, and **Session Management**.
+## 🚀 Current Status: Phase 3 (Authentication & Sessions)
+The project has moved beyond basic CRUD to include a secure **User Authentication** system and persistent **Session Management**.
 
 ## ✨ Features
 
-### 🔐 Authentication & Security
+### 🔐 Authentication & Smart Flow
 - **User Accounts**: Full Sign-up, Login, and Logout functionality powered by **Passport.js**.
-- **Secure Passwords**: Industry-standard hashing and salting using **passport-local-mongoose**.
-- **Authorization**: Protected routes and ownership checks—only the creator of a listing or review can edit or delete it.
-- **Session Management**: Persistent logins using **express-session** so users stay authenticated while browsing.
+- **Automatic Login**: New users are automatically logged in immediately after a successful signup.
+- **Smart Redirection**: If a guest tries to create or edit a listing, they are prompted to login. After logging in, the app automatically redirects them back to the **original page** they were trying to access.
+- **Dynamic Navbar**: UI components (Login, Signup, Logout) toggle automatically based on the user's authentication state.
 
 ### ✉️ User Feedback (Flash Messages)
-- **Real-time Alerts**: Integrated **connect-flash** to provide instant feedback (e.g., "Welcome to Wanderlust!", "Listing Deleted!", "Invalid Username or Password").
+- **Real-time Alerts**: Integrated **connect-flash** to provide instant feedback (e.g., "Welcome back!", "You are logged out!", "Listing Deleted!").
 
 ### 🏠 Listings Management
-- **View All Listings**: A responsive home page showing all available stays using Bootstrap cards.
-- **Detailed View**: A dedicated show page for each listing with image, description, and pricing.
+- **View All Listings**: A responsive home page showing available stays using Bootstrap cards.
+- **Detailed View**: A dedicated show page for each listing with images, descriptions, and pricing.
 - **Create & Edit**: Functional forms to add new listings or update existing ones.
-- **Smart Image Handling**: Automatic default image fallback if a user provides an empty URL.
 - **Currency Formatting**: Prices are automatically formatted to the Indian Rupee (INR) system.
 
 ### 💬 Review System
-- **Nested Reviews**: Users can leave ratings (1-5 stars) and comments on specific listings.
-- **Validation**: Server-side validation for reviews using Joi.
-- **Delete Reviews**: Option to remove specific reviews from a listing.
-
-### 🛠 Technical Highlights
-- **Schema Validation**: Robust data validation using **Joi** to prevent invalid data from entering the database.
-- **Error Handling**: Custom `ExpressError` class and `wrapAsync` utility to handle sync and async errors gracefully.
-- **Template Engine**: Used `ejs-mate` for layout partials (Navbar, Footer, Boilerplate) to maintain DRY code.
-- **Database Logic**: Implementation of Mongoose middleware to automatically delete all associated reviews when a listing is deleted.
+- **Rating & Comments**: Users can leave ratings (1-5 stars) and text reviews on listings.
+- **Validation**: Server-side validation for reviews and listings using **Joi**.
+- **Cleanup**: Mongoose middleware automatically deletes all associated reviews when a listing is removed.
 
 ---
 
