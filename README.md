@@ -7,11 +7,12 @@ The project has moved beyond basic CRUD to include a secure **User Authenticatio
 
 ## ✨ Features
 
-### 🔐 Authentication & Smart Flow
+### 🔐 Authentication & Authorization
 - **User Accounts**: Full Sign-up, Login, and Logout functionality powered by **Passport.js**.
-- **Automatic Login**: New users are automatically logged in immediately after a successful signup.
-- **Smart Redirection**: If a guest tries to create or edit a listing, they are prompted to login. After logging in, the app automatically redirects them back to the **original page** they were trying to access.
-- **Dynamic Navbar**: UI components (Login, Signup, Logout) toggle automatically based on the user's authentication state.
+- **Listing Ownership**: Only the **Owner** of a listing can edit or delete it. The "Edit" and "Delete" buttons are hidden from non-owners.
+- **Review Authorization**: Only the **Author** of a review has the permission to delete it.
+- **Smart Redirection**: If a guest tries to perform a protected action, they are redirected to login and returned to their original destination after success.
+- **Middleware Protection**: Server-side checks (`isOwner`, `isReviewAuthor`) prevent unauthorized API requests (e.g., via Postman).
 
 ### ✉️ User Feedback (Flash Messages)
 - **Real-time Alerts**: Integrated **connect-flash** to provide instant feedback (e.g., "Welcome back!", "You are logged out!", "Listing Deleted!").
@@ -27,7 +28,14 @@ The project has moved beyond basic CRUD to include a secure **User Authenticatio
 - **Validation**: Server-side validation for reviews and listings using **Joi**.
 - **Cleanup**: Mongoose middleware automatically deletes all associated reviews when a listing is removed.
 
----
+## 🛡️ Permissions Matrix
+
+
+| Feature | View | Create | Edit | Delete |
+| :--- | :---: | :---: | :---: | :---: |
+| **Listings** | Public | Registered User | Owner Only | Owner Only |
+| **Reviews** | Public | Registered User | N/A | Author Only |
+
 
 ## 🛠 Tech Stack
 
