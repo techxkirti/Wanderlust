@@ -49,6 +49,15 @@ const sessionOptions = {
     }
 };
 
+app.use((req, res, next) => {
+    // Tells the browser to never cache the page and always check the server
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.set('Pragma', 'no-cache');
+    res.set('Expires', '0');
+    next();
+});
+
+
 app.get("/", (req, res) => {
     res.send("Hi, I am root!");
 });
