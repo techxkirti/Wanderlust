@@ -2,10 +2,18 @@
 
 Wanderlust is a full-stack web application inspired by Airbnb. It allows users to list, explore, and review unique travel stays around the world. The project follows the **MVC (Model-View-Controller)** architecture for clean and scalable code.
 
-## 🚀 Current Status: Phase 3 (Authentication & Sessions)
-The project has moved beyond basic CRUD to include a secure **User Authentication** system and persistent **Session Management**.
+## 🚀 Current Status: Phase 4 (MVC Refactoring & UI Enhancements)
+The project has reached a major architectural milestone by decoupling business logic into **Controllers** and optimizing the routing structure for professional-grade development.
 
 ## ✨ Features
+
+### 🏗️ MVC Architecture & Refactoring
+- **Controller Logic**: Successfully moved all callback functions from the routes into a dedicated `controllers/` folder (`listing.js`, `review.js`, `user.js`).
+- **Clean Routing**: Implemented `router.route()` in the route files to group different HTTP methods (GET, POST, PUT, DELETE) that share the same URL path, reducing code redundancy.
+
+### ⭐ Enhanced Review System
+- **Starability Integration**: Integrated the **Starability.css** library to provide an animated, accessible, and visually appealing star-rating experience.
+- **Visual Feedback**: Reviews now display their star rating visually on the listing's show page using the `starability-result` component.
 
 ### 🔐 Authentication & Authorization
 - **User Accounts**: Full Sign-up, Login, and Logout functionality powered by **Passport.js**.
@@ -54,6 +62,10 @@ The project has moved beyond basic CRUD to include a secure **User Authenticatio
 | Index Page | Show Page |
 |------------|-----------|
 | ![Index Page](assets/index.png) | ![Show Page](assets/show.png) |
+
+| Reviews |
+|------------|
+| ![Index Page](assets/review.png) |
 
 ---
 
