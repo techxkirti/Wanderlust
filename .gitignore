@@ -1,0 +1,5 @@
+# Ignore environment variables
+.env
+
+# Ignore dependencies (too large to upload)
+node_modules/
