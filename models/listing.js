@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Review = require("./review.js");
+const { coordinates } = require("@maptiler/client");
 
 const defaultImage = "https://images.unsplash.com/photo-1772797583328-f83bc3f94f80?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
@@ -41,6 +42,17 @@ const listingSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
+    },
+    geometry: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
     }
 });
 
