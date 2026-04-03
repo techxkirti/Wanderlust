@@ -2,8 +2,23 @@
 
 Wanderlust is a full-stack web application inspired by Airbnb. It allows users to list, explore, and review unique travel stays around the world. The project follows the **MVC (Model-View-Controller)** architecture for clean and scalable code.
 
-## 🚀 Current Status: Phase 5 (Cloud Integration & Image Handling)
-The project now supports **production-grade image uploads**. Listings no longer rely on simple URL strings; they now use a robust cloud storage pipeline for uploading and transforming images.
+## 🚀 Current Phase: Geospatial Integration & UI Enhancement
+
+The project has successfully moved beyond basic CRUD operations and is currently in the **Interactive Mapping & Geospatial Integration** phase.
+
+### What's been achieved:
+- **Backend Geocoding**: Integrated `@maptiler/client` to convert address strings into GeoJSON coordinates during listing creation.
+- **3D Interactive Globe**: Implemented a cinematic 3D globe view with a "Milky Way" galaxy background for a premium user experience.
+- **Dynamic Marker UI**: 
+  - Added responsive red markers with custom scaling.
+  - Developed **Hover-to-Reveal** popup logic for markers using JavaScript event listeners.
+- **Frontend Refinement**: Custom CSS for map containers including rounded corners, glassmorphism shadows, and auto-centering.
+
+### Technical Stack (This Phase):
+- **API**: MapTiler Cloud (Maps & Geocoding)
+- **Library**: MapTiler SDK JS (v3.x)
+- **Logic**: Async/Await Node.js controllers for coordinate fetching.
+
 
 ## ✨ Features
 
