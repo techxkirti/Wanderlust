@@ -2,10 +2,15 @@
 
 Wanderlust is a full-stack web application inspired by Airbnb. It allows users to list, explore, and review unique travel stays around the world. The project follows the **MVC (Model-View-Controller)** architecture for clean and scalable code.
 
-## 🚀 Current Status: Phase 4 (MVC Refactoring & UI Enhancements)
-The project has reached a major architectural milestone by decoupling business logic into **Controllers** and optimizing the routing structure for professional-grade development.
+## 🚀 Current Status: Phase 5 (Cloud Integration & Image Handling)
+The project now supports **production-grade image uploads**. Listings no longer rely on simple URL strings; they now use a robust cloud storage pipeline for uploading and transforming images.
 
 ## ✨ Features
+
+### ☁️ Cloud Image Management (New!)
+- **Cloudinary Integration**: Fully integrated Cloudinary for professional image hosting and management.
+- **Multer Storage**: Implemented `multer` and `multer-storage-cloudinary` to handle `multipart/form-data` seamlessly during listing creation and updates.
+- **Image Transformations**: Implemented server-side image resizing. The edit form automatically requests a **250x250 cropped version** from Cloudinary to provide a lightweight preview without sacrificing performance.
 
 ### 🏗️ MVC Architecture & Refactoring
 - **Controller Logic**: Successfully moved all callback functions from the routes into a dedicated `controllers/` folder (`listing.js`, `review.js`, `user.js`).
@@ -28,7 +33,8 @@ The project has reached a major architectural milestone by decoupling business l
 ### 🏠 Listings Management
 - **View All Listings**: A responsive home page showing available stays using Bootstrap cards.
 - **Detailed View**: A dedicated show page for each listing with images, descriptions, and pricing.
-- **Create & Edit**: Functional forms to add new listings or update existing ones.
+- **Cloud-Powered Forms**: Enhanced Create and Edit forms that now support **direct file uploads** to Cloudinary instead of just URL strings.
+- **Dynamic Image Previews**: The Edit page now features a **real-time thumbnail preview** of the currently uploaded image, automatically resized via Cloudinary transformations for faster loading.
 - **Currency Formatting**: Prices are automatically formatted to the Indian Rupee (INR) system.
 
 ### 💬 Review System
@@ -38,34 +44,37 @@ The project has reached a major architectural milestone by decoupling business l
 
 ## 🛡️ Permissions Matrix
 
+| Feature | View | Create | Edit/Update | Delete | Image Upload |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Listings** | Public | Registered User | Owner Only | Owner Only | Cloudinary (via Multer) |
+| **Reviews** | Public | Registered User | N/A | Author Only | N/A |
 
-| Feature | View | Create | Edit | Delete |
-| :--- | :---: | :---: | :---: | :---: |
-| **Listings** | Public | Registered User | Owner Only | Owner Only |
-| **Reviews** | Public | Registered User | N/A | Author Only |
-
+### 🔒 Access Control Highlights
+- **Server-Side Protection**: Uses `isLoggedIn`, `isOwner`, and `isReviewAuthor` middleware to block unauthorized API requests.
+- **UI Logic**: "Edit" and "Delete" buttons are conditionally rendered, appearing only for the authorized owner/author.
+- **Secure Uploads**: Image uploads are restricted to logged-in users and validated via `multer-storage-cloudinary` to ensure only supported formats (JPG, PNG, JPEG) are stored.
 
 ## 🛠 Tech Stack
 
 - **Backend**: Node.js, Express.js
-- **Authentication**: Passport.js, Passport-Local, Passport-Local-Mongoose
-- **Storage/Sessions**: MongoDB, Mongoose, Express-Session, Connect-Flash
-- **Frontend**: EJS (Embedded JavaScript), Bootstrap 5, FontAwesome
-- **Validation**: Joi (Javascript Object Schema Validation)
-- **Styling**: Custom CSS with "Plus Jakarta Sans" typography.
+- **Cloud Storage**: Cloudinary (Image Hosting)
+- **Middleware**: Multer, Multer-Storage-Cloudinary
+- **Database**: MongoDB, Mongoose
+- **Authentication**: Passport.js
+- **Frontend**: EJS, Bootstrap 5, Starability.css
+- **Validation**: Joi (Schema Validation)
 
 ---
 
 ## 📸 Screenshots
 
-
 | Index Page | Show Page |
 |------------|-----------|
 | ![Index Page](assets/index.png) | ![Show Page](assets/show.png) |
 
-| Reviews |
-|------------|
-| ![Index Page](assets/review.png) |
+| Review Page | Edit Page |
+|------------|------------|
+| ![Review Page](assets/review.png) | ![Edit Page](assets/edit.png) |
 
 ---
 
@@ -89,3 +98,36 @@ The project has reached a major architectural milestone by decoupling business l
 - Open your browser and go to: `http://localhost:8080/listings`
 
 ---
+
+## ⚙️ Installation & Setup
+
+To get a local copy up and running, follow these steps:
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/techxkirti/Wanderlust.git
+   cd Wanderlust
+2. **Install Dependencies**
+   ```bash
+   # Installs all required packages including Cloudinary, Multer, and Passport
+      npm install
+3. **Environment Configuration**
+- Create a file named `.env` in the root directory.
+- Add your **Cloudinary credentials** and any other secrets (**Note:** Do NOT commit this file to Git):
+
+```env
+CLOUD_NAME=your_cloudinary_name
+CLOUD_API_KEY=your_api_key
+CLOUD_API_SECRET=your_api_secret
+```
+4. **Database Setup**
+- Ensure MongoDB is installed and running on your machine.
+- The app default connection is: mongodb://127.0.0.1:27017/wanderlust
+- Seed Initial Data: To populate the database with sample listings, run:
+   ```bash
+   node init/index.js
+5. **Start and View the Application**
+- Run the server:
+   ```bash
+   node app.js
+- Open your browser and navigate to: http://localhost:8080/listings
