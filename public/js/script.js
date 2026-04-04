@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("JS RUNNING");
 
   const forms = document.querySelectorAll(".needs-validation");
 
