@@ -19,7 +19,7 @@
 
                     <div class="mb-3">
                         Uploaded Image: <br />
-                        <img src="<%= originalImageUrl %>"/>
+                        <img src="<%= originalImageUrl %>"  class="edit-img"/>
                     </div>
 
                     <div class="mb-3">
@@ -47,6 +47,19 @@
                         <input name="listing[location]" value="<%=listing.location%>" type="text" class="form-control" required>
                         <div class="invalid-feedback">Please enter a valid location.</div>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <select name="listing[category]" class="form-select" required>
+                            <% const categories = ["Trending", "Rooms", "Iconic cities", "Mountains", "Castles", "Amazing pools", "Camping", "Farms", "Arctic", "Beach", "Domes"]; %>
+                            
+                            <% for(let cat of categories) { %>
+                            <option value="<%= cat %>" <%= listing.category === cat ? 'selected' : '' %> >
+                                <%= cat %>
+                            </option>
+                            <% } %>
+                        </select>
+                        </div>
                     
                     <button class="btn btn-dark edit-btn mt-3 mb-3">Edit</button>
                 </form>
