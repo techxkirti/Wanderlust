@@ -2,6 +2,7 @@ const Listing = require("./models/listing.js");
 const Review = require("./models/review.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { listingSchema, reviewSchema } = require("./schema.js");
+const { cloudinary } = require("./cloudConfig");
 
 module.exports.isLoggedIn = (req, res, next) => {
     if(!req.isAuthenticated()){
@@ -60,3 +61,19 @@ module.exports.isReviewAuthor = async (req, res, next) => {
 
     next();
 }
+
+module.exports.applyUserCleanup = (userSchema) => {
+    userSchema.post("findOneAndDelete", async function (user) {
+        if (user) {
+            const userListings = await Listing.find({ owner: user._id });
+            
+            for (let listing of userListings) {
+                if (listing.image && listing.image.filename !== "listingimage") {
+                    await cloudinary.uploader.destroy(listing.image.filename);
+                }
+                await Listing.findByIdAndDelete(listing._id);
+            }
+            await Review.deleteMany({ author: user._id });
+        }
+    });
+};
