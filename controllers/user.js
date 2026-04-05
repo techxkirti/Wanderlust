@@ -1,4 +1,5 @@
 const User = require("../models/user.js");
+const wrapAsync = require("../utils/wrapAsync.js");
 
 module.exports.renderSignupForm = (req, res) => {
     res.render("user/signup.ejs");
@@ -9,7 +10,6 @@ module.exports.signup = async (req, res) => {
         let {username, email, password} = req.body;
         const newuser = User({username, email});
         let registeredUser = await User.register(newuser, password);
-        // console.log(registeredUser);
         req.login(registeredUser, (err) => {
             if(err){
                 return next();
@@ -42,3 +42,27 @@ module.exports.logout = (req, res, next) => {
         res.redirect("/listings");
     });
 };
+
+module.exports.renderSignoutForm = (req, res) => {
+    res.render("user/signout.ejs");
+};
+
+module.exports.deleteAccount = wrapAsync (async (req, res, next) => {
+    const { username, password } = req.body;
+    const user = await User.findById(req.user._id);
+
+    const { user: authenticatedUser } = await User.authenticate()(username, password);
+
+    if (!authenticatedUser) {
+        req.flash("error", "Incorrect username or password.");
+        return res.redirect("/signout-confirm");
+    }
+
+    await User.findByIdAndDelete(user._id);
+
+    req.logout((err) => {
+        if (err) return next(err);
+        req.flash("success", "Your account and all associated data have been deleted permanently.");
+        res.redirect("/listings");
+    });
+});
