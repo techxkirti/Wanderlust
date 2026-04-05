@@ -1,83 +1,143 @@
-# Wanderlust ✈️
+# 🌍 Wanderlust ✈️  
+### A Full-Stack Airbnb-Inspired Travel Platform
 
-Wanderlust is a full-stack web application inspired by Airbnb. It allows users to list, explore, and review unique travel stays around the world. The project follows the **MVC (Model-View-Controller)** architecture for clean and scalable code.
+Wanderlust is a **production-ready full-stack web application** that allows users to **discover, create, and review unique travel stays** across the globe. Built with a scalable **MVC architecture**, it integrates **cloud storage, authentication, geospatial mapping, and interactive UI** to deliver a modern booking-like experience.
 
-## 🚀 Current Phase: Geospatial Integration & UI Enhancement
+---
 
-The project has successfully moved beyond basic CRUD operations and is currently in the **Interactive Mapping & Geospatial Integration** phase.
+## 🚀 Live Demo
 
-### What's been achieved:
-- **Backend Geocoding**: Integrated `@maptiler/client` to convert address strings into GeoJSON coordinates during listing creation.
-- **3D Interactive Globe**: Implemented a cinematic 3D globe view with a "Milky Way" galaxy background for a premium user experience.
-- **Dynamic Marker UI**: 
-  - Added responsive red markers with custom scaling.
-  - Developed **Hover-to-Reveal** popup logic for markers using JavaScript event listeners.
-- **Frontend Refinement**: Custom CSS for map containers including rounded corners, glassmorphism shadows, and auto-centering.
+🔗 **Deployed Link:** *(after deployment)*  
+🔗 **GitHub Repository:** https://github.com/techxkirti/Wanderlust
 
-### Technical Stack (This Phase):
-- **API**: MapTiler Cloud (Maps & Geocoding)
-- **Library**: MapTiler SDK JS (v3.x)
-- **Logic**: Async/Await Node.js controllers for coordinate fetching.
+---
 
+## 🧠 Project Highlights
 
-## ✨ Features
+- 🌐 **Full-Stack Application (MERN-inspired)**
+- 🗺️ **Geospatial Mapping with Interactive 3D Globe**
+- ☁️ **Cloudinary-powered Image Uploads**
+- 🔐 **Secure Authentication & Authorization**
+- ⭐ **Dynamic Review & Rating System**
+- ⚡ **Optimized UI with Responsive Design**
 
-### ☁️ Cloud Image Management (New!)
-- **Cloudinary Integration**: Fully integrated Cloudinary for professional image hosting and management.
-- **Multer Storage**: Implemented `multer` and `multer-storage-cloudinary` to handle `multipart/form-data` seamlessly during listing creation and updates.
-- **Image Transformations**: Implemented server-side image resizing. The edit form automatically requests a **250x250 cropped version** from Cloudinary to provide a lightweight preview without sacrificing performance.
+---
 
-### 🏗️ MVC Architecture & Refactoring
-- **Controller Logic**: Successfully moved all callback functions from the routes into a dedicated `controllers/` folder (`listing.js`, `review.js`, `user.js`).
-- **Clean Routing**: Implemented `router.route()` in the route files to group different HTTP methods (GET, POST, PUT, DELETE) that share the same URL path, reducing code redundancy.
+## 🏗️ Architecture
 
-### ⭐ Enhanced Review System
-- **Starability Integration**: Integrated the **Starability.css** library to provide an animated, accessible, and visually appealing star-rating experience.
-- **Visual Feedback**: Reviews now display their star rating visually on the listing's show page using the `starability-result` component.
+The project follows a **clean MVC (Model-View-Controller) architecture**:
 
-### 🔐 Authentication & Authorization
-- **User Accounts**: Full Sign-up, Login, and Logout functionality powered by **Passport.js**.
-- **Listing Ownership**: Only the **Owner** of a listing can edit or delete it. The "Edit" and "Delete" buttons are hidden from non-owners.
-- **Review Authorization**: Only the **Author** of a review has the permission to delete it.
-- **Smart Redirection**: If a guest tries to perform a protected action, they are redirected to login and returned to their original destination after success.
-- **Middleware Protection**: Server-side checks (`isOwner`, `isReviewAuthor`) prevent unauthorized API requests (e.g., via Postman).
+```
+Models     → MongoDB schemas (Listings, Reviews, Users)
+Views      → EJS templates (UI rendering)
+Controllers→ Business logic (async/await handling)
+Routes     → RESTful routing (Express Router)
+```
 
-### ✉️ User Feedback (Flash Messages)
-- **Real-time Alerts**: Integrated **connect-flash** to provide instant feedback (e.g., "Welcome back!", "You are logged out!", "Listing Deleted!").
+### Key Design Decisions:
+- Separation of concerns for scalability
+- Middleware-based security checks
+- RESTful routing using `router.route()`
+- Server-side validation using Joi
+
+---
+
+## ✨ Core Features
 
 ### 🏠 Listings Management
-- **View All Listings**: A responsive home page showing available stays using Bootstrap cards.
-- **Detailed View**: A dedicated show page for each listing with images, descriptions, and pricing.
-- **Cloud-Powered Forms**: Enhanced Create and Edit forms that now support **direct file uploads** to Cloudinary instead of just URL strings.
-- **Dynamic Image Previews**: The Edit page now features a **real-time thumbnail preview** of the currently uploaded image, automatically resized via Cloudinary transformations for faster loading.
-- **Currency Formatting**: Prices are automatically formatted to the Indian Rupee (INR) system.
+- Create, edit, and delete listings
+- View all listings in a responsive grid layout
+- Detailed listing page with pricing, description, and images
+- Currency formatted in **INR**
 
-### 💬 Review System
-- **Rating & Comments**: Users can leave ratings (1-5 stars) and text reviews on listings.
-- **Validation**: Server-side validation for reviews and listings using **Joi**.
-- **Cleanup**: Mongoose middleware automatically deletes all associated reviews when a listing is removed.
+---
+
+### ☁️ Cloud Image Management
+- Integrated **Cloudinary** for image storage
+- Supports direct file uploads using **Multer**
+- Automatic **image resizing & transformations**
+- Lightweight preview images (250x250 optimized thumbnails)
+
+---
+
+### 🗺️ Geospatial & Maps Integration
+- **MapTiler API** for maps & geocoding
+- Converts addresses into **GeoJSON coordinates**
+- Interactive **3D globe experience**
+- Dynamic markers with:
+  - Hover-based popups
+  - Responsive scaling
+  - Auto-centering logic
+
+---
+
+### ⭐ Review & Rating System
+- Users can add reviews with **1–5 star ratings**
+- Integrated **Starability.css** for UI
+- Visual star-based feedback system
+- Mongoose middleware ensures:
+  - Automatic deletion of related reviews
+
+---
+
+### 🔐 Authentication & Authorization
+- Secure login/signup using **Passport.js**
+- Role-based permissions:
+  - Only listing owner can edit/delete
+  - Only review author can delete reviews
+- Smart redirect after login
+- Protected routes via middleware:
+  - `isLoggedIn`
+  - `isOwner`
+  - `isReviewAuthor`
+
+---
+
+### ✉️ User Feedback System
+- Flash messages using **connect-flash**
+- Real-time alerts:
+  - Login success
+  - Logout confirmation
+  - CRUD operation feedback
+
+---
 
 ## 🛡️ Permissions Matrix
 
-| Feature | View | Create | Edit/Update | Delete | Image Upload |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **Listings** | Public | Registered User | Owner Only | Owner Only | Cloudinary (via Multer) |
-| **Reviews** | Public | Registered User | N/A | Author Only | N/A |
+| Feature   | View | Create | Edit | Delete |
+|----------|------|--------|------|--------|
+| Listings | Public | User | Owner | Owner |
+| Reviews  | Public | User | — | Author |
 
-### 🔒 Access Control Highlights
-- **Server-Side Protection**: Uses `isLoggedIn`, `isOwner`, and `isReviewAuthor` middleware to block unauthorized API requests.
-- **UI Logic**: "Edit" and "Delete" buttons are conditionally rendered, appearing only for the authorized owner/author.
-- **Secure Uploads**: Image uploads are restricted to logged-in users and validated via `multer-storage-cloudinary` to ensure only supported formats (JPG, PNG, JPEG) are stored.
+---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
-- **Backend**: Node.js, Express.js
-- **Cloud Storage**: Cloudinary (Image Hosting)
-- **Middleware**: Multer, Multer-Storage-Cloudinary
-- **Database**: MongoDB, Mongoose
-- **Authentication**: Passport.js
-- **Frontend**: EJS, Bootstrap 5, Starability.css
-- **Validation**: Joi (Schema Validation)
+### 💻 Backend
+- Node.js
+- Express.js
+
+### 🗄️ Database
+- MongoDB
+- Mongoose
+
+### 🔐 Authentication
+- Passport.js
+
+### ☁️ Cloud Services
+- Cloudinary (Image Hosting)
+- MapTiler API (Maps & Geocoding)
+
+### 🎨 Frontend
+- EJS
+- Bootstrap 5
+- Starability.css
+
+### 🧰 Middleware & Tools
+- Multer
+- Multer-Storage-Cloudinary
+- Joi (Validation)
+- Connect-Flash
 
 ---
 
@@ -87,62 +147,81 @@ The project has successfully moved beyond basic CRUD operations and is currently
 |------------|-----------|
 | ![Index Page](assets/index.png) | ![Show Page](assets/show.png) |
 
-| Review Page | Edit Page |
+| Review Page | Map on Show Page |
 |------------|------------|
-| ![Review Page](assets/review.png) | ![Edit Page](assets/edit.png) |
+| ![Review Page](assets/review.png) | ![Map on Show Page](assets/show2.png) |
+
+| Create Listing Page | Edit Page |
+|------------|-----------|
+| ![Create Listing Page](assets/createListing.png) | ![Edit Page](assets/edit.png) |
+
+| Signup Page | Login Page |
+|------------|------------|
+| ![Signup Page](assets/signup.png) | ![Login Page](assets/login.png) |
+
+| Delete Account Page | Confirm Delete Page |
+|------------|------------|
+| ![Delete Account Page](assets/delete.png) | ![Confirm Delete Page](assets/confirmDelete.png) |
 
 ---
 
 ## ⚙️ Installation & Setup
 
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/techxkirti/Wanderlust.git
-   cd wonderlust
-2. **Install Dependencies**
-   ```bash
-   # This will automatically install all required packages from package.json
-   npm install
-3. **Database Configuration**
-   - Ensure you have **MongoDB** installed and running locally.
-   - The app connects to: `mongodb://127.0.0.1:27017/wanderlust`
-   - (Optional) To seed the database with initial data:
-   ```bash
-   node init/index.js
-### 5. View the App
-- Open your browser and go to: `http://localhost:8080/listings`
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/techxkirti/Wanderlust.git
+cd Wanderlust
+```
+
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
 
 ---
 
-## ⚙️ Installation & Setup
+### 3️⃣ Environment Variables
 
-To get a local copy up and running, follow these steps:
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/techxkirti/Wanderlust.git
-   cd Wanderlust
-2. **Install Dependencies**
-   ```bash
-   # Installs all required packages including Cloudinary, Multer, and Passport
-      npm install
-3. **Environment Configuration**
-- Create a file named `.env` in the root directory.
-- Add your **Cloudinary credentials** and any other secrets (**Note:** Do NOT commit this file to Git):
+Create a `.env` file in the root directory:
 
 ```env
 CLOUD_NAME=your_cloudinary_name
 CLOUD_API_KEY=your_api_key
 CLOUD_API_SECRET=your_api_secret
+
+MAPTILER_API_KEY=your_maptile_api_key
+
+SESSION_SECRET=your_secret
 ```
-4. **Database Setup**
-- Ensure MongoDB is installed and running on your machine.
-- The app default connection is: mongodb://127.0.0.1:27017/wanderlust
-- Seed Initial Data: To populate the database with sample listings, run:
-   ```bash
-   node init/index.js
-5. **Start and View the Application**
-- Run the server:
-   ```bash
-   node app.js
-- Open your browser and navigate to: http://localhost:8080/listings
+
+---
+
+### 4️⃣ Database Setup
+
+Make sure MongoDB is running:
+
+```bash
+mongodb://127.0.0.1:27017/wanderlust
+```
+
+Seed initial data:
+
+```bash
+node init/index.js
+```
+
+---
+
+### 5️⃣ Run Application
+
+```bash
+node app.js
+```
+
+Visit:
+```
+http://localhost:8080/listings
+```
+
+
+
