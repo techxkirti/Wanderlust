@@ -47,12 +47,6 @@ module.exports.createListing = async(req, res, next) => {
     newListing.owner = req.user._id;
     newListing.image = { url, filename };
     newListing.geometry = result.features[0].geometry;
-    if (req.file) {
-        console.log("--- Image Upload Details ---");
-        console.log("File Name:", req.file.filename);
-        console.log("Final Size (bytes):", req.file.size); 
-        console.log("Final Size (KB):", (req.file.size / 1024).toFixed(2));
-    }
     let savedListing = await newListing.save();
     req.flash("success", "New Listing Created!");
     res.redirect("/listings");
