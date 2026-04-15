@@ -1,131 +1,136 @@
-# Wanderlust ✈️  
-Wanderlust is a full-stack web application inspired by Airbnb. It allows users to create, explore, and review travel listings. The project follows the **MVC (Model-View-Controller)** architecture for structured and maintainable code.
+# Wanderlust ✈️🌍  
+A full-stack Airbnb-inspired web application where users can explore, create, and review travel listings with secure authentication, cloud image uploads, and interactive maps.
+
+🔗 **Live Demo**: https://wanderlust-1-qo2x.onrender.com/listings  
 
 ---
 
-## 🚀 Project Status: Completed & Deployed  
+## ⚡ Overview  
 
-The project is fully functional with authentication, authorization, image uploads, reviews, and map-based location visualization. It is deployed and accessible online.
+Wanderlust is a production-ready travel listing platform built using the **MVC architecture**.  
+It allows users to discover destinations, share listings, and interact through reviews — all within a secure and responsive system.
 
-> Live Link: https://wanderlust-w2pl.onrender.com/listings
-
-### What's been achieved:
-- **Full CRUD Functionality** for listings and reviews  
-- **Authentication System** with secure sessions  
-- **Authorization Controls** for listings and reviews  
-- **Cloud-based Image Uploads** using Cloudinary  
-- **Geocoding & Map Integration** using MapTiler  
-- **Responsive UI** using Bootstrap  
-- **MVC Architecture Implementation**  
-- **Deployed Application** running in production  
+Beyond standard CRUD operations, the application integrates:
+- Authentication & authorization
+- Cloud-based media handling
+- Location-based services
+- Advanced UI features like search and category filtering
 
 ---
 
-## ✨ Features  
+## ✨ Key Features  
 
-### ☁️ Cloud Image Management  
-- **Cloudinary Integration** for storing listing images  
-- **Multer + Cloudinary Storage** for handling uploads  
-- **Edit Form Preview** of existing images  
+### 🏠 Listings Platform  
+- Create, edit, and delete listings  
+- View all listings with clean UI  
+- Detailed listing page with:
+  - Image  
+  - Description  
+  - Price  
+  - Location with map  
 
 ---
 
-### 🏗️ MVC Architecture  
-- Clean separation of concerns:
-  - Models (Mongoose schemas)  
-  - Views (EJS templates)  
-  - Controllers (business logic)  
-- Organized routing using Express Router  
+### 🔍 Search & Category Filters *(Custom Feature)*  
+- Search listings by keywords  
+- Filter listings based on categories  
+- Enhances user experience and discoverability  
 
 ---
 
 ### 🔐 Authentication & Authorization  
-- **User Authentication** using Passport.js  
-- Login, Signup, Logout, Signout functionality  
-- **Access Control**:
-  - Only owners can edit/delete listings  
-  - Only authors can delete reviews  
-- Middleware:
-  - `isLoggedIn`  
-  - `isOwner`  
-  - `isReviewAuthor`  
+- Secure user authentication using Passport.js  
+- Signup, Login, Logout  
+- **Signout (Account Deletion)** *(Custom Feature)*  
+  - Permanently deletes user from database  
+
+**Access Control:**
+- Only listing owners can edit/delete listings  
+- Only review authors can delete reviews  
 
 ---
 
-### 🏠 Listings Management  
-- View all listings (index page)  
-- Create listings with image upload  
-- Detailed show page with:
-  - Image  
-  - Description  
-  - Price  
-  - Location map  
-- Edit and delete functionality (owner only)  
+### 🖼️ Cloud Image Uploads  
+- Cloudinary integration for image storage  
+- Multer for handling file uploads  
+- Image preview during edit  
 
 ---
 
 ### 💬 Review System  
-- Add reviews with rating and comment  
-- Reviews linked to listings  
-- Only review authors can delete  
-- Cascade deletion of reviews when listing is removed  
+- Add reviews with ratings and comments  
+- Linked to both users and listings  
+- Cascade deletion when a listing is removed  
 
 ---
 
-### 🗺️ Map & Geolocation  
-- Address converted to coordinates using MapTiler  
-- Map displayed on listing show page  
-- Location markers for listings  
+### 🗺️ Maps & Geolocation  
+- MapTiler integration  
+- Convert location → coordinates  
+- Display interactive map on listing page  
 
 ---
 
-### ✉️ Flash Messages  
-- User feedback using connect-flash:
-  - Success messages  
-  - Error alerts  
-  - Authentication feedback  
+### 🎨 UI & UX Enhancements *(Custom Work)*  
+- Responsive design using Bootstrap  
+- Improved layout and visual hierarchy  
+- Flash messages for user feedback  
+- Clean navigation and user flow  
 
 ---
 
-### ✅ Validation  
-- Joi schema validation for:
-  - Listings  
-  - Reviews  
-- Prevents invalid or incomplete data submission  
+### ✅ Data Validation & Security  
+- Joi validation for listings and reviews  
+- Prevents invalid submissions  
+- Session-based authentication  
 
 ---
 
-## 🛡️ Permissions Matrix  
+## 💡 Highlights  
 
-| Feature   | View | Create | Edit/Update | Delete |
-|----------|------|--------|-------------|--------|
-| Listings | Public | Registered User | Owner Only | Owner Only |
-| Reviews  | Public | Registered User | N/A | Author Only |
+- Designed using **MVC architecture** for scalability and maintainability  
+- Implements **secure authentication & role-based authorization**  
+- Integrates **third-party services (Cloudinary, MapTiler)**  
+- Includes **custom features beyond tutorial scope** (search, filters, account deletion)  
+- Built with focus on **real-world usability and clean UI/UX** 
 
 ---
 
-## 🛠 Tech Stack  
+## 🏗️ Tech Stack  
 
-- **Backend**: Node.js, Express.js  
-- **Database**: MongoDB, Mongoose  
-- **Authentication**: Passport.js  
-- **Frontend**: EJS, Bootstrap 5  
-- **Image Storage**: Cloudinary  
-- **File Uploads**: Multer, multer-storage-cloudinary  
-- **Validation**: Joi  
-- **Maps & Geocoding**: MapTiler  
+| Layer       | Technology |
+|------------|-----------|
+| Backend     | Node.js, Express.js |
+| Database    | MongoDB, Mongoose |
+| Frontend    | EJS, Bootstrap 5 |
+| Auth        | Passport.js |
+| File Upload | Multer, Cloudinary |
+| Validation  | Joi |
+| Maps        | MapTiler |
+
+---
+
+## 🛡️ Permissions  
+
+| Resource  | Action        | Access |
+|----------|--------------|--------|
+| Listings | View          | Public |
+| Listings | Create        | Logged-in Users |
+| Listings | Edit/Delete   | Owner Only |
+| Reviews  | Create        | Logged-in Users |
+| Reviews  | Delete        | Author Only |
 
 ---
 
 ## 🌐 Deployment  
 
-The application is deployed and running in a production environment.
-
-- **Backend Hosting**: (Add your platform – e.g., Render / Railway)  
+- **Hosting**: Render  
 - **Database**: MongoDB Atlas  
-- **Image Hosting**: Cloudinary  
+- **Image Storage**: Cloudinary  
 
-> Live Link: https://wanderlust-w2pl.onrender.com/listings
+🔗 https://wanderlust-1-qo2x.onrender.com/listings 
+
+---
 
 ## 📸 Screenshots
 
@@ -190,7 +195,7 @@ Make sure MongoDB is running:
 mongodb://127.0.0.1:27017/wanderlust
 ```
 
-Seed initial data:
+### 5️⃣ Seed initial data (Optional)
 
 ```bash
 node init/index.js
@@ -198,13 +203,15 @@ node init/index.js
 
 ---
 
-### 5️⃣ Run Application
+### 6️⃣ Run Application
 
 ```bash
 node app.js
 ```
 
-Visit:
+🌐 Access the App
+
+Open your browser and visit:
 ```
 http://localhost:8080/listings
 ```
