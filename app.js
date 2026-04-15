@@ -21,21 +21,24 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/user.js");
 
-const dns = require("dns");
-dns.setServers(["1.1.1.1", "0.0.0.0"]);
 // const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 const DbUrl = process.env.ATLASDB_URL;
 
 main()
 .then(() => {
     console.log("Connected to DB.");
+    app.listen(8080, () => {
+        console.log("App is listening to port 8080");
+    });
 })
 .catch((err) => {
     console.log(err);
 });
 
 async function main() {
-    await mongoose.connect(DbUrl);
+    await mongoose.connect(DbUrl, {
+        serverSelectionTimeoutMS: 30000
+    });
 }
 
 app.set("view engine", "ejs");
@@ -75,9 +78,9 @@ const sessionOptions = {
 // });
 
 app.use(session(sessionOptions));
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -109,8 +112,4 @@ app.all("/*splat", (req, res, next) => {
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "Something went wrong!" } = err;
     res.status(statusCode).render("listings/err.ejs", {message});
-});
-    
-app.listen(8080, () => {
-    console.log("App is listening to port 8080");
 });
