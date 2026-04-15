@@ -2,15 +2,13 @@
 <body>
 
     
-    <div id="filters" class="d-flex align-items-center flex-wrap"> 
+    <div id="filters" class="d-flex align-items-center justify-content-between flex-nowrap"> 
 
-        <button class="btn btn-outline-dark d-xl-none mb-3 mt-3" type="button" 
-                data-bs-toggle="collapse" data-bs-target="#filtersCollapse" 
-                aria-expanded="false" aria-controls="filtersCollapse">
+        <button class="btn btn-outline-dark d-lg-none mb-3 mt-3" onclick="toggleSidebar()">
             <i class="fa-solid fa-filter"></i> Categories
         </button>
 
-        <div class="collapse d-xl-flex flex-grow-1 align-items-center" id="filtersCollapse">
+        <div class="collapse d-lg-flex flex-grow-1 align-items-center" id="filtersCollapse">
             <div class="d-flex flex-wrap">
                 <a href="/listings?category=Trending" class="filter-link">
                     <div class="filter">
@@ -91,7 +89,7 @@
             </div>
         </div>
             
-        <div class="tax-toggle ms-auto">
+        <div class="tax-toggle d-flex align-items-center flex-shrink-0 mb-2">
             <div class="form-check-reverse form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
             <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
@@ -118,5 +116,30 @@
             </a>
         <% } %>
     </div>
-    
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h4>Categories</h4>
+            <button class="close-btn" onclick="toggleSidebar()">&times;</button>
+        </div>
+
+        <div class="sidebar-content">
+            <a href="/listings?category=Trending">Trending</a>
+            <a href="/listings?category=Rooms">Rooms</a>
+            <a href="/listings?category=Iconic cities">Iconic Cities</a>
+            <a href="/listings?category=Mountains">Mountains</a>
+            <a href="/listings?category=Castles">Castles</a>
+            <a href="/listings?category=Amazing pools">Amazing pools</a>
+            <a href="/listings?category=Camping">Camping</a>
+            <a href="/listings?category=Farms">Farms</a>
+            <a href="/listings?category=Arctic">Arctic</a>
+            <a href="/listings?category=Beach">Beach</a>
+            <a href="/listings?category=Domes">Domes</a>
+        </div>
+    </div>
+
+    <!-- OVERLAY -->
+    <div id="overlay" class="overlay" onclick="toggleSidebar()"></div>
+        
 </body>
