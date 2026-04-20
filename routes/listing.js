@@ -8,7 +8,7 @@ const listingController = require("../controllers/listing.js");
 
 const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
-const upload = multer({ storage,  limits: { fileSize: 1 * 1024 * 1024 } });
+const upload = multer({ storage,  limits: { fileSize: 5 * 1024 * 1024 } });
 
 //New Route:
 router.get("/new", 
